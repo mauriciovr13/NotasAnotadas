@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Notas Anotadas</string>
+    <string name="addNota">Nova nota</string>
+    <string name="exit">Sair</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="edit">Editar</string>
+    <string name="deleteNota">Apagar nota</string>
+    <string name="title">Titulo</string>
+    <string name="resume">Resumo</string>
+    <string name="description">Descrição</string>
+    <string name="periodicity">Periodicidade</string>
+    <string name="alert">Configuração do Alerta</string>
+    <string name="hour">Hora/Data</string>
+    <string name="send">Cadastrar</string>
+    <string-array name="periodicidade">
+        <item>Uma única vez</item>
+        <item>Uma vez por hora</item>
+        <item>Diário</item>
+        <item>Semanal</item>
+        <item>Nenhuma</item>
+    </string-array>
+    <string name="hasError">Preencha o campo corretamente</string>
+</resources>

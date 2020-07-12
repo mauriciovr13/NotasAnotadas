@@ -1,0 +1,2 @@
+rootProject.name='Notas Anotadas'
+include ':app'
