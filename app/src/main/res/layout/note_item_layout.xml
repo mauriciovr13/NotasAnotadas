@@ -16,12 +16,13 @@
 
         <ImageButton
             android:id="@+id/btnDelete"
-            android:layout_width="64dp"
+            android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_above="@+id/note_item_resumo"
             android:layout_marginStart="5dp"
             android:layout_marginBottom="-10dp"
             android:layout_toEndOf="@+id/note_item_titulo"
+            android:background="@android:color/transparent"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
         <TextView

@@ -13,6 +13,7 @@ data class Note(
     @ColumnInfo(name = "resumo") val resumo : String,
     @ColumnInfo(name = "descricao") val descricao : String,
     @ColumnInfo(name = "criadoEm") val criadoEm : Date,
-    @ColumnInfo(name = "periodicidade") val periodicidade : Int,
-    @ColumnInfo(name = "dataHoraAlerta") val dataHoraAlerta : DateTime
+    @ColumnInfo(name = "periodicidade") var periodicidade : Int,
+    @ColumnInfo(name = "dataHoraAlerta") val dataHoraAlerta : DateTime,
+    @ColumnInfo(name = "broacastId") val broadcastId : Long
 )

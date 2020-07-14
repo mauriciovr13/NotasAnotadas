@@ -1,6 +1,10 @@
 package com.example.notasanotadas.ui.adapter
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notasanotadas.R
 import com.example.notasanotadas.model.database.AppDatabase
 import com.example.notasanotadas.model.database.Note
+import com.example.notasanotadas.notification.Alarm
 import com.example.notasanotadas.ui.NewNoteActivity
 import kotlinx.android.synthetic.main.note_item_layout.view.*
 
@@ -50,6 +55,7 @@ class Adapter(private val data: List<Note>) : RecyclerView.Adapter<Adapter.MyVie
                 try {
                     db = AppDatabase.getInstance(it.context)
                     db.noteDAO().delete(nota)
+                    cancelNotification(it.context, nota)
                     notifyDataSetChanged()
                     Toast.makeText(it.context, "Nota excluída com sucesso", Toast.LENGTH_LONG).show()
                 } catch (e: ArrayIndexOutOfBoundsException) {
@@ -62,10 +68,21 @@ class Adapter(private val data: List<Note>) : RecyclerView.Adapter<Adapter.MyVie
 
             val dialog = builder.create()
             dialog.show()
-            // db = AppDatabase.getInstance(it.context)
-            // Log.println(Log.INFO, "Banco", db.noteDAO().getAllNotes().size.toString())
-            // Toast.makeText(it.context, "Vou excluir a nota ${nota.id}", Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun cancelNotification(context: Context, nota : Note) {
+        Log.println(Log.INFO, "Notificação", "Cancelando notificação com código ${nota.broadcastId}")
+        val broadcastIntent = Intent(context, Alarm::class.java)
+        broadcastIntent.putExtra("noteId", nota.id)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            nota.broadcastId.toInt(),
+            broadcastIntent,
+            0
+        )
+        val alarm = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarm.cancel(pendingIntent)
     }
 
     override fun getItemCount() = data.size

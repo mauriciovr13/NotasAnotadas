@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var lista : List<Note>
     lateinit var db : AppDatabase
     lateinit var notesList : LiveData<List<Note>>
 
@@ -33,12 +32,12 @@ class MainActivity : AppCompatActivity() {
     // Criação do Banco de Dados
     fun setupDatabase() {
         db = AppDatabase.getInstance(this)
+        Toast.makeText(this, "Tem ${db.noteDAO().getAllNotes().size} nota(s) no banco!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
         super.onResume()
         notesList = db.noteDAO().getAll()
-
         notesList.observe(this, Observer {
             it?.let { list -> note_list_recyclerview.adapter = Adapter(list) }
         })
@@ -64,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.sairDoApp -> {
-                //Sair do app
+                // Sair do app
                 finish()
             }
         }
@@ -81,7 +80,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        Toast.makeText(this, "Cliquei", Toast.LENGTH_LONG).show()
         return super.onContextItemSelected(item)
     }
 }

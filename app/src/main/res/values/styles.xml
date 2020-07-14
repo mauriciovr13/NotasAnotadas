@@ -13,6 +13,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 
     <style name="AppTheme.NewNote" parent="Theme.AppCompat.Light.DarkActionBar">
